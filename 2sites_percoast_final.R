@@ -231,7 +231,7 @@ Summer <- summer1 %>%
   filter(site %in% sites)
 
 Su1 <-ggplot(Summer, aes(x = date, y = temp)) +
-  geom_line(aes(colour = src)) +
+  geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = "Temperature (°C)") +
   theme_new()
@@ -240,7 +240,7 @@ Spring <- spring1 %>%
   filter(site %in% sites)
 
 Sp1 <- ggplot(Spring, aes(x = date, y = temp)) +
-  geom_line(aes(colour = src)) +
+  geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
   theme_new()
@@ -249,7 +249,7 @@ Winter <- winter1 %>%
   filter(site %in% sites)
 
 Wi1 <- ggplot(Winter, aes(x = date, y = temp)) +
-  geom_line(aes(colour = src)) +
+  geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
   theme_new()
@@ -258,7 +258,7 @@ Autumn <- autumn1 %>%
   filter(site %in% sites)
 
 Au1 <- ggplot(Autumn, aes(x = date, y = temp)) +
-  geom_line(aes(colour = src)) +
+  geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
   theme_new() +

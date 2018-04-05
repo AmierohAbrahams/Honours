@@ -230,11 +230,13 @@ sites <- c("Ballito", "Knysna","Sodwana", "Mossel Bay", "Hout Bay")
 Summer <- summer1 %>%
   filter(site %in% sites)
 
-Su1 <-ggplot(Summer, aes(x = date, y = temp)) +
+Su1 <- ggplot(Summer, aes(x = date, y = temp)) +
   geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = "Temperature (°C)") +
-  theme_new()
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#cfcfcf", size = 0.4))
 
 Spring <- spring1 %>%
   filter(site %in% sites)
@@ -243,7 +245,9 @@ Sp1 <- ggplot(Spring, aes(x = date, y = temp)) +
   geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
-  theme_new()
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#cfcfcf", size = 0.4))
 
 Winter <- winter1 %>%
   filter(site %in% sites)
@@ -252,7 +256,9 @@ Wi1 <- ggplot(Winter, aes(x = date, y = temp)) +
   geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
-  theme_new()
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#cfcfcf", size = 0.4))
 
 Autumn <- autumn1 %>%
   filter(site %in% sites)
@@ -261,8 +267,9 @@ Au1 <- ggplot(Autumn, aes(x = date, y = temp)) +
   geom_line(aes(colour = src), alpha = 0.5) +
   facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = NULL) +
-  theme_new() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#cfcfcf", size = 0.4))
 
 ggarrange(Su1, Au1, Wi1, Sp1, ncol = 4, nrow = 1, common.legend = TRUE, align = "hv")
 

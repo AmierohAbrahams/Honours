@@ -225,14 +225,14 @@ ggarrange(one, two) ## Combining all sites and PN into one image
 
 ##### Faceting by season
 
-sites <- c("Ballito", "Knysna","Sodwana", "Mossel Bay", "Port Nolloth", "Hout Bay")
+sites <- c("Ballito", "Knysna","Sodwana", "Mossel Bay", "Hout Bay")
 
 Summer <- summer1 %>%
   filter(site %in% sites)
 
 Su1 <-ggplot(Summer, aes(x = date, y = temp)) +
   geom_line(aes(colour = src)) +
-  facet_grid(site~season) +
+  facet_grid(site ~ season, scales = "free_x") +
   labs(x = "Year", y = "Temperature (°C)") +
   theme_new()
 
@@ -241,8 +241,8 @@ Spring <- spring1 %>%
 
 Sp1 <- ggplot(Spring, aes(x = date, y = temp)) +
   geom_line(aes(colour = src)) +
-  facet_grid(site~season) +
-  labs(x = "Year", y = "Temperature (°C)") +
+  facet_grid(site ~ season, scales = "free_x") +
+  labs(x = "Year", y = NULL) +
   theme_new()
 
 Winter <- winter1 %>%
@@ -250,8 +250,8 @@ Winter <- winter1 %>%
 
 Wi1 <- ggplot(Winter, aes(x = date, y = temp)) +
   geom_line(aes(colour = src)) +
-  facet_grid(site~season) +
-  labs(x = "Year", y = "Temperature (?C)") +
+  facet_grid(site ~ season, scales = "free_x") +
+  labs(x = "Year", y = NULL) +
   theme_new()
 
 Autumn <- autumn1 %>%
@@ -259,12 +259,12 @@ Autumn <- autumn1 %>%
 
 Au1 <- ggplot(Autumn, aes(x = date, y = temp)) +
   geom_line(aes(colour = src)) +
-  facet_grid(site~season) +
-  labs(x = "Year", y = "Temperature (°C)") +
+  facet_grid(site ~ season, scales = "free_x") +
+  labs(x = "Year", y = NULL) +
   theme_new() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggarrange(Su1,Sp1,Wi1,Au1)
+ggarrange(Su1, Au1, Wi1, Sp1, ncol = 4, nrow = 1, common.legend = TRUE, align = "hv")
 
 
 

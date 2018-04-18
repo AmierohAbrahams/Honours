@@ -94,7 +94,8 @@ SACTN_clust_1_legit <- SACTN_clust_1_match %>%
          year = year(date)) %>% 
   select(-temp_1, -temp_2) %>% 
   group_by(index_pair, month, year) %>% 
-  summarise(temp_month_year = mean(temp_legit, na.rm = T))
+  summarise(temp_mean_month_year = mean(temp_legit, na.rm = T),
+            temp_sd_month_year = sd(temp_legit, na.rm = T))
 
 # Visualise results -------------------------------------------------------
 
@@ -104,11 +105,16 @@ ggplot(data = SACTN_clust_1_match, aes(x = index_pair)) +
   geom_boxplot(aes(y = temp_2), fill = "chartreuse3", alpha = 0.3) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# Legit values
+# Legit mean values
 ggplot(data = SACTN_clust_1_legit, 
-       aes(x = year, y = temp_month_year)) +
+       aes(x = year, y = temp_mean_month_year)) +
   geom_line(aes(group = index_pair, colour = index_pair), alpha = 0.7) +
   geom_smooth(method = "gam", se = F, aes(colour = index_pair))  +
   facet_wrap(~month)
-#+
-  # theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Legit SD values
+ggplot(data = SACTN_clust_1_legit, 
+       aes(x = year, y = temp_sd_month_year)) +
+  geom_line(aes(group = index_pair, colour = index_pair), alpha = 0.7) +
+  geom_smooth(method = "gam", se = F, aes(colour = index_pair))  +
+  facet_wrap(~month)

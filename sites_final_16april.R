@@ -1,12 +1,11 @@
 library(tidyverse)
 library(ggpubr)
-library(dplyr)
 library(lubridate)
 library(gridExtra)
 library(scales)
 
 # Loading the data --------------------------------------------------------
-load("~/Honours/R assignment/Honours.P/SACTNdaily_v4.1.Rdata")
+load("SACTNdaily_v4.1.Rdata")
 # for each combination of site and src, calculate the mean temperature and subtract it
 # from the daily temperatures
 temp <- as_tibble(SACTNdaily_v4.1)
